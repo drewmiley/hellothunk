@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { combineReducers } from 'redux';
-import { fetchDataSuccess } from './reducers';
+import { users } from './reducers';
 
 const reducer = combineReducers({
-    fetchDataSuccess
+    users
 });
 
 export default function configureStore(initialState) {

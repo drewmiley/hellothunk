@@ -5,7 +5,17 @@ class App {
     constructor(options) {
         this.dom = options.dom;
         this.store = options.store;
+        this.dispatch = options.mapDispatchToProps(this.store.dispatch);
         this.store.subscribe(this.update.bind(this));
+        this.dom
+            .querySelector('#getuser')
+            .addEventListener('click',
+                this.getUser.bind(this)
+            );
+    }
+
+    getUser() {
+        this.dispatch.fetchData();
     }
 
     renderButton(state) {
@@ -21,6 +31,7 @@ class App {
     }
 
     update() {
+        console.log("Updating");
         const state = this.store.getState();
         this.renderButton(state);
         this.renderUser(state);
@@ -34,7 +45,8 @@ class App {
 document.addEventListener('DOMContentLoaded', () => {
     const app = new App({
         dom: document.querySelector('#root'),
-        store: store()
+        store: store(),
+        mapDispatchToProps
     });
     app.render();
 });

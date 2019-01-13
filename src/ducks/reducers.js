@@ -1,4 +1,4 @@
-export function fetchDataSuccess(state = null, action) {
+export function users(state = null, action) {
     switch (action.type) {
         case 'FETCH_DATA_SUCCESS':
             return action.results;
