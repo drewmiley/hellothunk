@@ -19,7 +19,6 @@ class App {
     }
 
     displayUser(user) {
-        console.log(user)
         if (user) {
             this.dom
                 .querySelector('#userinfo')
