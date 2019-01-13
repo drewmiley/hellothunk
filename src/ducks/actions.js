@@ -1,4 +1,4 @@
-export const mapDispatchToProps = dispatch => ({
+export const mapDispatch = dispatch => ({
     fetchData: () => dispatch(fetchData())
 });
 
@@ -12,11 +12,11 @@ const fetchData = () => dispatch => {
             return response;
         })
         .then(response => response.json())
-        .then(response => response.results)
-        .then(results => dispatch(fetchDataSuccess(results)));
+        .then(response => response.results[0])
+        .then(user => dispatch(fetchDataSuccess(user)));
 };
 
-const fetchDataSuccess = results => ({
+const fetchDataSuccess = user => ({
     type: 'FETCH_DATA_SUCCESS',
-    results
+    user
 });

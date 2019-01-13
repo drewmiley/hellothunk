@@ -1,7 +1,7 @@
-export function users(state = null, action) {
+export function user(state = null, action) {
     switch (action.type) {
         case 'FETCH_DATA_SUCCESS':
-            return action.results;
+            return action.user;
         default:
             return state;
     }

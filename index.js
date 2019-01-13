@@ -1,12 +1,12 @@
-import { mapDispatchToProps } from './src/ducks/actions';
+import { mapDispatch } from './src/ducks/actions';
 import store from './src/ducks/store';
 
 class App {
     constructor(options) {
         this.dom = options.dom;
         this.store = options.store;
-        this.dispatch = options.mapDispatchToProps(this.store.dispatch);
-        this.store.subscribe(this.update.bind(this));
+        this.fetchData = options.mapDispatch(this.store.dispatch).fetchData;
+        this.store.subscribe(this.render.bind(this));
         this.dom
             .querySelector('#getuser')
             .addEventListener('click',
@@ -15,30 +15,21 @@ class App {
     }
 
     getUser() {
-        this.dispatch.fetchData();
+        this.fetchData();
     }
 
-    renderButton(state) {
-        this.dom
-            .querySelector('#getuser')
-            .innerHTML = "Hello";
-    }
-
-    renderUser(state) {
-        this.dom
-            .querySelector('#userinfo')
-            .innerHTML = "Some stuff";
-    }
-
-    update() {
-        console.log("Updating");
-        const state = this.store.getState();
-        this.renderButton(state);
-        this.renderUser(state);
+    displayUser(user) {
+        console.log(user)
+        if (user) {
+            this.dom
+                .querySelector('#userinfo')
+                .innerHTML = user.email;
+        }
     }
 
     render() {
-        this.update();
+        const state = this.store.getState();
+        this.displayUser(state.user);
     }
 }
 
@@ -46,8 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const app = new App({
         dom: document.querySelector('#root'),
         store: store(),
-        mapDispatchToProps
+        mapDispatch
     });
     app.render();
 });
-console.log("Running");

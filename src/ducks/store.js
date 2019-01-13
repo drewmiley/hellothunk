@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { combineReducers } from 'redux';
-import { users } from './reducers';
+import { user } from './reducers';
 
 const reducer = combineReducers({
-    users
+    user
 });
 
 export default function configureStore(initialState) {
