@@ -1,11 +1,10 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { combineReducers } from 'redux';
-import { items, songPlayingId } from './reducers';
+import { fetchDataSuccess } from './reducers';
 
 const reducer = combineReducers({
-    items,
-    songPlayingId
+    fetchDataSuccess
 });
 
 export default function configureStore(initialState) {
