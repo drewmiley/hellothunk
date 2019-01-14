@@ -82,7 +82,7 @@ console.log('Running');
     <button id="getuser">Get user</button>
 </div>
 ```
-20. In `index.html`, add
+20. In `index.js`, add
 ```
 class App {
     constructor(options) {
